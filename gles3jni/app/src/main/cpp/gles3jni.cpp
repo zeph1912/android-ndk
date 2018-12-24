@@ -83,7 +83,6 @@ GLuint createProgram(const char* vtxSrc, const char* fragSrc) {
     fragShader = createShader(GL_FRAGMENT_SHADER, fragSrc);
     if (!fragShader)
         goto exit;
-
     program = glCreateProgram();
     if (!program) {
         checkGlError("glCreateProgram");
@@ -117,8 +116,8 @@ exit:
 }
 
 static void printGlString(const char* name, GLenum s) {
-    const char* v = (const char*)glGetString(s);
-    ALOGV("GL %s: %s\n", name, v);
+//    const char* v = (const char*)glGetString(s);
+//    ALOGV("GL %s: %s\n", name, v);
 }
 
 // ----------------------------------------------------------------------------
@@ -261,14 +260,7 @@ Java_com_android_gles3jni_GLES3JNILib_init(JNIEnv* env, jobject obj) {
     printGlString("Renderer", GL_RENDERER);
     printGlString("Extensions", GL_EXTENSIONS);
 
-    const char* versionStr = (const char*)glGetString(GL_VERSION);
-    if (strstr(versionStr, "OpenGL ES 3.") && gl3stubInit()) {
-        g_renderer = createES3Renderer();
-    } else if (strstr(versionStr, "OpenGL ES 2.")) {
-        g_renderer = createES2Renderer();
-    } else {
-        ALOGE("Unsupported OpenGL ES version");
-    }
+    g_renderer = createES2Renderer();
 }
 
 JNIEXPORT void JNICALL

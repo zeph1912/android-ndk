@@ -34,14 +34,16 @@ else ()
 endif (${ANDROID_PLATFORM_LEVEL} LESS 12)
 
 add_library(gles3jni SHARED
-            ${GL3STUB_SRC}
+            #${GL3STUB_SRC}
             gles3jni.cpp 
             RendererES2.cpp
             RendererES3.cpp)
 
 # Include libraries needed for gles3jni lib
 target_link_libraries(gles3jni
-            ${OPENGL_LIB}
+            #${OPENGL_LIB}
+	    GLESv2
+	    GLESv3
             android
             EGL
             log

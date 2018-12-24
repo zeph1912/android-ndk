@@ -18,10 +18,6 @@ package com.android.gles3jni;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.WindowManager;
-
-import java.io.File;
 
 public class GLES3JNIActivity extends Activity {
 
@@ -30,16 +26,19 @@ public class GLES3JNIActivity extends Activity {
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         mView = new GLES3JNIView(getApplication());
+
         setContentView(mView);
     }
 
     @Override protected void onPause() {
         super.onPause();
         mView.onPause();
+
     }
 
     @Override protected void onResume() {
         super.onResume();
         mView.onResume();
     }
+
 }
